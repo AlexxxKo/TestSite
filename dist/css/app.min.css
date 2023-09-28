@@ -50,7 +50,6 @@ html {
 .cards__content,
 .flex-column,
 .services__cards .cards__content,
-.steps,
 .steps__icons-circle,
 .steps__wrapper,
 .technologies__title span {
@@ -134,9 +133,7 @@ html {
 }
 .cards {
   -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  max-width: 1450px;
-  margin: 0 auto
+  flex-wrap: wrap
 }
 .cards__content {
   height: 100%;
@@ -194,7 +191,7 @@ html {
 .screen__content {
   position: relative;
   height: 100%;
-  padding: 15px;
+  padding: 15px 45px 15px 15px;
   z-index: 2
 }
 .screen__h1,
@@ -292,10 +289,7 @@ html {
   z-index: 100
 }
 .header__btn {
-  margin-left: 40px
-}
-.header__lang {
-  margin-left: 30px
+  margin: 0 30px 0 40px
 }
 .header__logo {
   height: 60px
@@ -353,28 +347,22 @@ html {
 .home .btn__first {
   margin-right: 25px
 }
-.bridge {
-  margin-left: 11.1111111111%
-}
 .bridge__image {
-  padding-right: 2.3333333333%
+  min-width: 680px;
+  max-width: 680px;
+  margin-right: 5.4794520548%
 }
 .bridge__image img {
-  width: 700px
+  width: 100%
 }
 .bridge__content {
-  margin-bottom: 35px;
-  padding-left: 2.3333333333%;
-  padding-right: 14.4444444444%
+  margin-bottom: 35px
 }
 .bridge__text {
   margin-bottom: 50px
 }
 .bridge__wrapper {
-  height: 100%
-}
-.services {
-  height: 100%
+  max-width: 1460px
 }
 .services__cards .cards__content {
   -webkit-box-orient: vertical;
@@ -394,16 +382,8 @@ html {
 .services__cards-icon img {
   height: 110px
 }
-.steps {
-  position: relative;
-  height: 100%
-}
-.steps::before {
-  content: url(../images/dest/bg-steps-2.png);
-  position: absolute;
-  left: 0;
-  bottom: -15%;
-  width: 709.48px
+.services__wrapper {
+  max-width: 1450px
 }
 .steps__description {
   margin-bottom: 120px
@@ -454,7 +434,6 @@ html {
   z-index: 2
 }
 .technologies {
-  position: relative;
   z-index: 2
 }
 .technologies__title {
@@ -483,7 +462,7 @@ html {
 }
 .technologies__slider {
   width: 100%;
-  max-width: 1450px;
+  max-width: 1420px;
   margin: 0 auto
 }
 .technologies__slider .itc-slider-item {
@@ -500,6 +479,9 @@ html {
 .technologies__slider .itc-slider-btn-next {
   right: -50px
 }
+.technologies__wrapper {
+  max-width: 1420px
+}
 .technologies .slider__icon {
   margin-bottom: 50px
 }
@@ -513,9 +495,6 @@ html {
   font-size: 1.5555555556rem;
   font-weight: 700;
   text-align: center
-}
-.benefits {
-  height: 100%
 }
 .benefits__cards .cards__content {
   padding: 5px 3vw
@@ -535,6 +514,9 @@ html {
 }
 .benefits__cards-image img {
   width: 100%
+}
+.benefits__wrapper {
+  max-width: 1450px
 }
 .contactUs__cards {
   -webkit-box-align: start;
@@ -620,7 +602,7 @@ html {
   flex-direction: column;
   position: absolute;
   top: 50%;
-  right: 50px;
+  right: 30px;
   -webkit-transform: translate(0,-50%);
   -ms-transform: translate(0,-50%);
   transform: translate(0,-50%)
