@@ -1,3 +1,98 @@
+.itc-slider {
+  position: relative
+}
+.itc-slider-wrapper {
+  overflow: hidden;
+  background-color: #eee
+}
+.itc-slider-items {
+  display: flex;
+  transition: transform .5s ease;
+  will-change: transform
+}
+.itc-slider-transition-none {
+  transition: none
+}
+.itc-slider-item {
+  flex: 0 0 100%;
+  max-width: 100%;
+  user-select: none;
+  will-change: transform
+}
+.itc-slider-btn {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 50px;
+  color: #fff;
+  text-align: center;
+  background: rgb(0 0 0 / 20%);
+  border: none;
+  transform: translateY(-50%);
+  cursor: pointer
+}
+.itc-slider-btn-hide {
+  display: none
+}
+.itc-slider-btn-prev {
+  left: 0
+}
+.itc-slider-btn-next {
+  right: 0
+}
+.itc-slider-btn:focus,
+.itc-slider-btn:hover {
+  color: #fff;
+  text-decoration: none;
+  background: rgb(0 0 0 / 30%);
+  outline: 0
+}
+.itc-slider-btn::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: transparent no-repeat center center;
+  background-size: 100% 100%
+}
+.itc-slider-btn-prev::before {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E")
+}
+.itc-slider-btn-next::before {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E")
+}
+.itc-slider-indicators {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 15;
+  display: flex;
+  justify-content: center;
+  margin: 0 15%;
+  padding-left: 0;
+  list-style: none
+}
+.itc-slider-indicator {
+  flex: 0 1 auto;
+  box-sizing: content-box;
+  width: 30px;
+  height: 5px;
+  margin-right: 3px;
+  margin-left: 3px;
+  text-indent: -999px;
+  background-color: rgb(255 255 255 / 50%);
+  background-clip: padding-box;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  cursor: pointer
+}
+.itc-slider-indicator-active {
+  background-color: rgb(255 255 255 / 90%)
+}
 *,
 ::after,
 ::before {
@@ -277,6 +372,42 @@ html {
   -ms-flex-direction: column;
   flex-direction: column
 }
+.wrapper {
+  opacity: 0;
+  -webkit-transition: opacity .8s ease 0s;
+  transition: opacity .8s ease 0s
+}
+.wrapper._free .page__pagination {
+  -webkit-transform: translate(50px,-50%);
+  -ms-transform: translate(50px,-50%);
+  transform: translate(50px,-50%);
+  -webkit-transition: all .3s ease 0s;
+  transition: all .3s ease 0s
+}
+.wrapper._loaded {
+  opacity: 1
+}
+.wrapper._loaded .header {
+  opacity: 1;
+  -webkit-transform: translate(0,0);
+  -ms-transform: translate(0,0);
+  transform: translate(0,0);
+  -webkit-transition: -webkit-transform .8s ease .8s;
+  transition: -webkit-transform .8s ease .8s;
+  transition: transform .8s ease .8s;
+  transition: transform .8s ease .8s,-webkit-transform .8s ease .8s
+}
+.wrapper._loaded .page__pagination {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transform: translate(0,-50%);
+  -ms-transform: translate(0,-50%);
+  transform: translate(0,-50%);
+  -webkit-transition: -webkit-transform .6s ease .8s;
+  transition: -webkit-transform .6s ease .8s;
+  transition: transform .6s ease .8s;
+  transition: transform .6s ease .8s,-webkit-transform .6s ease .8s
+}
 .header {
   position: fixed;
   top: 0;
@@ -286,7 +417,10 @@ html {
   background-color: #fff;
   -webkit-box-shadow: 0 1px 4px #ddd;
   box-shadow: 0 1px 4px #ddd;
-  z-index: 100
+  z-index: 100;
+  -webkit-transform: translate(0,-100%);
+  -ms-transform: translate(0,-100%);
+  transform: translate(0,-100%)
 }
 .header__btn {
   margin: 0 30px 0 40px
@@ -306,8 +440,8 @@ html {
   margin-left: .25rem;
   font-weight: 700;
   cursor: pointer;
-  -webkit-transition: color .3s;
-  transition: color .3s
+  -webkit-transition: color .3s ease 0s;
+  transition: color .3s ease 0s
 }
 .langs__item:hover {
   color: #818181
@@ -325,8 +459,8 @@ html {
   margin-left: 35px;
   font-weight: 700;
   color: #000;
-  -webkit-transition: color .3s;
-  transition: color .3s
+  -webkit-transition: color .3s ease 0s;
+  transition: color .3s ease 0s
 }
 .menu__link:first-child {
   margin-left: 0
@@ -334,7 +468,7 @@ html {
 .menu__link:hover {
   color: #818181
 }
-.menu__link.active {
+.menu__link._active {
   color: #818181
 }
 .home {
@@ -350,7 +484,7 @@ html {
 .bridge__image {
   min-width: 680px;
   max-width: 680px;
-  margin-right: 5.4794520548%
+  margin-right: 5.5172413793%
 }
 .bridge__image img {
   width: 100%
@@ -362,7 +496,7 @@ html {
   margin-bottom: 50px
 }
 .bridge__wrapper {
-  max-width: 1460px
+  max-width: 1450px
 }
 .services__cards .cards__content {
   -webkit-box-orient: vertical;
@@ -518,6 +652,13 @@ html {
 .benefits__wrapper {
   max-width: 1450px
 }
+.contactUs {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr auto;
+  grid-template-rows: 1fr auto;
+  padding-bottom: 0
+}
 .contactUs__cards {
   -webkit-box-align: start;
   -ms-flex-align: start;
@@ -545,33 +686,35 @@ html {
   background-image: url(../images/dest/icon-email.svg)
 }
 .contactUs__form {
-  padding-left: 25px
+  padding-left: 7%
 }
 .contactUs__info {
-  padding-right: 25px
+  padding-right: 7%
 }
 .contactUs__info p {
   margin-bottom: 1rem
 }
+.contactUs__wrapper {
+  max-width: 1450px
+}
 .footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
   background-color: #07a6ff;
-  padding: 35px 0
+  margin: 0 -45px 0 -15px;
+  padding: 35px 45px 35px 15px
 }
 .footer__cards {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
-  justify-content: space-between;
-  width: 100%
+  justify-content: space-between
 }
 .footer__logo {
   margin-right: .5rem
 }
 .footer__social {
   margin-letf: .5rem
+}
+.footer__wrapper {
+  max-width: 1450px
 }
 .social__item {
   margin-left: .5rem
@@ -603,9 +746,11 @@ html {
   position: absolute;
   top: 50%;
   right: 30px;
-  -webkit-transform: translate(0,-50%);
-  -ms-transform: translate(0,-50%);
-  transform: translate(0,-50%)
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: translate(50px,-50%);
+  -ms-transform: translate(50px,-50%);
+  transform: translate(50px,-50%)
 }
 .page__scroll {
   position: absolute;
